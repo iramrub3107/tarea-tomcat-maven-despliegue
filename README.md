@@ -201,3 +201,10 @@ Y como se puede observar, la aplicación se ha desplegado con éxito.
 
 ---
 
+Para poder desplegar la aplicación de rock-paper-scissors (la cual se nos ha ofrecido), hay que seguir una serie de pasos:
+
+1. Nos descargamos el repositorio de GitHub en nuestra carpeta home haciendo un git clone del repo. Para esto, escribimos ```git clone https://github.com/cameronmcnz/rock-paper-scissors.git```, y esperamos a que se nos "clone" el repo.
+
+<img width="1199" height="673" alt="image" src="https://github.com/user-attachments/assets/09836955-7904-4044-b63c-f4d8b7fe0b5b" />
+
+2. 
