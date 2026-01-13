@@ -207,4 +207,10 @@ Para poder desplegar la aplicación de rock-paper-scissors (la cual se nos ha of
 
 <img width="1199" height="673" alt="image" src="https://github.com/user-attachments/assets/09836955-7904-4044-b63c-f4d8b7fe0b5b" />
 
-2. 
+2. Cuando lo tengamos clonado, entramos en él y cambiamos de rama ejecutando ```git checkout patch-1```:
+
+<img width="1200" height="678" alt="image" src="https://github.com/user-attachments/assets/a4704128-47f6-4012-bf35-2be33764c87e" />
+<img width="1202" height="675" alt="image" src="https://github.com/user-attachments/assets/afad4253-6520-4d43-8a5b-cce5ffc373e3" />
+
+3. 
+
