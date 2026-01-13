@@ -63,3 +63,11 @@ Una vez dentro, como se puede ver, nos pedirá iniciar sesión, así que iniciar
 Y cuando hayamos iniciado sesión, si todo sale bien, nos saldrá el panel de control de tomcat9. Si no, nos volverá a pedir que iniciemos sesión. En mi caso, ya me ha salido todo bien, por lo que estoy dentro del panel de control.
 
 <img width="1203" height="676" alt="image" src="https://github.com/user-attachments/assets/c9c62488-31d8-4a94-b696-e661e756ca13" />
+
+A continuación, haremos el mismo proceso de iniciar sesión, pero esta vez en el host-manager
+
+<img width="1203" height="675" alt="image" src="https://github.com/user-attachments/assets/4b7de63e-9e9a-4305-8165-2eb7c77f1334" />
+
+Y nos saldrá el panel de control del host-manager:
+
+<img width="1204" height="658" alt="image" src="https://github.com/user-attachments/assets/bf8b7a74-16e8-44a3-b329-7c1135585812" />
