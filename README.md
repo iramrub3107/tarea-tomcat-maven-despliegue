@@ -71,3 +71,24 @@ A continuación, haremos el mismo proceso de iniciar sesión, pero esta vez en e
 Y nos saldrá el panel de control del host-manager:
 
 <img width="1204" height="658" alt="image" src="https://github.com/user-attachments/assets/bf8b7a74-16e8-44a3-b329-7c1135585812" />
+
+# 4. DESPLIEGUE MANUAL MEDIANTE GUI
+
+Ahora vamos a hacer un despliegue de una aplicación mediante GUI. Para ello, usaremos un archivo .war (concretamente tomcat1.war). Nos lo descargamos y nos vamos a la sección que nos indica desplegar un WAR manualmente:
+
+<img width="1204" height="677" alt="image" src="https://github.com/user-attachments/assets/2a5e692b-8b76-41dd-ab90-c1fd10dee72f" />
+
+Para abrir el archivo .war, haremos clic en donde pone "Seleccionar archivo", y seleccionaremos el archivo .war que nos acabamos de descargar
+
+<img width="1204" height="665" alt="image" src="https://github.com/user-attachments/assets/1c16cfaa-97e4-4752-9365-704d6c03421d" />
+<img width="961" height="761" alt="image" src="https://github.com/user-attachments/assets/70c7287d-e7a7-4962-9f9e-3d8eb46e2bc6" />
+
+Y cuando tengamos subido el archivo, hacemos clic en el botón que pone "Desplegar"
+
+<img width="962" height="543" alt="image" src="https://github.com/user-attachments/assets/19c3dde6-a805-426f-b52d-c94e88a7d4c8" />
+
+Esperamos a que se despliegue el archivo, y después, nos aparecerá nuestro archivo ya desplegado como un directorio más de todas nuestras aplicaciones
+
+<img width="964" height="544" alt="image" src="https://github.com/user-attachments/assets/b3e11cd7-455e-4f8d-96a3-08a29f0afa24" />
+
+# 5. DESPLIEGUE CON MAVEN
