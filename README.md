@@ -212,5 +212,17 @@ Para poder desplegar la aplicación de rock-paper-scissors (la cual se nos ha of
 <img width="1200" height="678" alt="image" src="https://github.com/user-attachments/assets/a4704128-47f6-4012-bf35-2be33764c87e" />
 <img width="1202" height="675" alt="image" src="https://github.com/user-attachments/assets/afad4253-6520-4d43-8a5b-cce5ffc373e3" />
 
-3. 
+3. Una vez dentro del proyecto, ejecutamos ```sudo nano pom.xml```, y añadimos el siguiente código (el que está marcado)
 
+<img width="1200" height="676" alt="image" src="https://github.com/user-attachments/assets/23dcb5d8-36d0-49d7-bc04-549551102c67" />
+
+4. Después de realizar ese cambio, simplemente hacemos ```mvn clean tomcat7:deploy``` y esperamos a que la aplicación se despliegue
+
+<img width="1200" height="676" alt="image" src="https://github.com/user-attachments/assets/16e1a809-0a74-4935-9fc5-28a1aaec1e12" />
+<img width="1202" height="676" alt="image" src="https://github.com/user-attachments/assets/517dcc81-0bcb-4523-a2b7-92a830e8f100" />
+
+5. Finalmente, verificamos que la aplicación se ha desplegado con éxito entrando a nuestro navegador y poniendo http://localhost:8080/rock
+
+<img width="1204" height="653" alt="image" src="https://github.com/user-attachments/assets/af63b88d-6a2a-4ed4-a73e-4125d54aaecf" />
+
+Y como se puede observar, la aplicación se ha desplegado con éxito!
