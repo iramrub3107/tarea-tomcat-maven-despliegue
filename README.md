@@ -23,7 +23,18 @@ Y cuando tengamos bien configurada nuestra regla, nos iremos a nuestro navegador
 <img width="960" height="379" alt="image" src="https://github.com/user-attachments/assets/dc7a4b0f-d4a0-43a1-b44b-81446f657b0d" />
 
 Dado a que Tomcat no permite acceder por defecto a paneles de control que no sea estando dentro del localhost, vamos a cambiar eso para que se pueda acceder desde donde sea.
-Para ello, vamos a irnos a /usr/share/tomcat9-root/default_root/META-INF y editaremos el archivo context.xml, poniendo el contenido que aparece en la captura de pantalla:
+Para ello, vamos a irnos a /usr/share/tomcat9-root/default_root/META-INF y editaremos el archivo context.xml, poniendo lo siguiente:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiResourceLocking="false" privileged="true" >
+  <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor"
+                   sameSiteCookies="strict" />
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="\d+\.\d+\.\d+\.\d+" />
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>
+```
 
 <img width="960" height="540" alt="image" src="https://github.com/user-attachments/assets/85afe1cf-03d3-4148-a145-1f37ff68d078" />
 
@@ -92,3 +103,101 @@ Esperamos a que se despliegue el archivo, y después, nos aparecerá nuestro arc
 <img width="964" height="544" alt="image" src="https://github.com/user-attachments/assets/b3e11cd7-455e-4f8d-96a3-08a29f0afa24" />
 
 # 5. DESPLIEGUE CON MAVEN
+
+Para comenzar, vamos a instalar maven con ```sudo apt -y install maven```
+
+<img width="1200" height="676" alt="image" src="https://github.com/user-attachments/assets/2316b9e4-8d89-4f15-bdb7-7e7dc310edf8" />
+
+Para asegurarnos de que maven se ha instalado correctamente, ejecutaremos ```mvn --v``` para que podamos ver la versión instalada
+
+<img width="1201" height="674" alt="image" src="https://github.com/user-attachments/assets/56fe2b15-0c57-4d7c-942a-db5375c30e4c" />
+
+A continuación, vamos a añadir un nuevo usuario en nuestro archivo tomcat-users.xml para que nuestro primer usuario no tenga los mismos permisos (los suyos además de manager-script) que el nuevo.
+
+<img width="1202" height="676" alt="image" src="https://github.com/user-attachments/assets/eed1e45a-095d-4b7d-8871-373f87ffcc07" />
+
+Luego, editaremos el archivo settings.xml que se encuentra en /etc/maven y nos iremos a la etiqueta servers para poner lo siguiente:
+
+```xml
+...
+...
+<servers>
+  <server>
+    <id>Tomcat</id>
+    <username>deploy</username>
+    <password>1234</password>
+  </server>
+ </servers>
+```
+
+<img width="1200" height="678" alt="image" src="https://github.com/user-attachments/assets/aac48f31-07c4-42d2-a702-42097b54ee50" />
+
+Después, ejecutaremos el siguiente comando:
+
+```
+mvn archetype:generate -DgroupId=tu-enlace -DartifactId=tu-id -Ddeployment -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=fa
+```
+
+...Y esperamos a que aparezca por pantalla "BUILD SUCCESS"
+
+<img width="1197" height="678" alt="image" src="https://github.com/user-attachments/assets/087f4552-1a90-40ef-8370-5894097144a7" />
+
+A continuación entraremos a la carpeta que nos ha creado (que en mi caso se llama practica-war) con un ```cd practica-war``` , y editamos el archivo pom.xml para poner el siguiente código:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.zaidinvergeles</groupId>
+  <artifactId>tomcat-war-deployment</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>tomcat-war-deployment Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+<build>
+   <finalName>tomcat-war-deployment</finalName>
+   <plugins>
+     <plugin>
+       <groupId>org.apache.tomcat.maven</groupId>
+       <artifactId>tomcat7-maven-plugin</artifactId>
+       <version>2.2</version>
+       <configuration>
+         <url>http://localhost:8080/manager/text</url>
+         <server>Tomcat</server>
+         <path>/despliegue</path>
+       </configuration>
+     </plugin>
+   </plugins>
+</build>
+</project>
+```
+
+<img width="1201" height="678" alt="image" src="https://github.com/user-attachments/assets/b2d6b9ad-fe56-49dd-81bb-9566c9d6a1cc" />
+
+En la captura de pantalla se puede observar mejor la parte la cual ha sido editada.
+
+Una vez lo tengamos, ejecutamos ```mvn tomcat7:deploy```, y esperamos a que se despliegue la aplicación. Una vez hecho, nos tendrá que aparecer por pantalla BUILD SUCCESS
+
+<img width="1201" height="677" alt="image" src="https://github.com/user-attachments/assets/4271fbbe-fa5e-4708-9eb0-bdbc5bd7243c" />
+
+Ahora, verificamos que, al entrar a localhost:8080/despliegue se ve correctamente...
+
+<img width="1200" height="676" alt="image" src="https://github.com/user-attachments/assets/136b1673-cc9c-4781-8ea6-e57c9c8a8226" />
+
+Y como se puede observar, la aplicación se ha desplegado con éxito. 
+
+---
+
+# 6. TAREA
+
+---
+
